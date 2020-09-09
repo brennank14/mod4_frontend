@@ -1,13 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { deleteTodo } from '../actions/todos'
 import { Button, Card } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+
+
 
 
 class TodoContainer extends React.Component {
-constructor() {
-    super();
-}
+
+  handleDelete = () => {
+    fetch(`http://localhost:3002/todos/${this.props.id}`, {
+        method: 'DELETE', 
+        headers: {
+            "Content-Type": "application/json"}})
+    .then(resp => {
+      this.props.deleteTodo(this.props.id)
+    })
+  }
+
+
   render(){
-    console.log(this.props)
     return <div>
         <Card>
         <Card.Content>
@@ -17,15 +30,18 @@ constructor() {
             </Card.Description>
         </Card.Content>
         <Card.Content extra>
-        <div className='ui three buttons'>
+        <div className='ui four buttons'>
+        <Button basic color='black'>
+            <Link to={`/todos/${this.props.id}`} >View</Link>
+            </Button>
             <Button basic color='green'>
-            Complete Todo
+            Done
             </Button>
             <Button basic color='yellow'>
-            Edit Todo
+            Edit
             </Button>
-            <Button basic color='red'>
-            Delete Todo
+            <Button basic color='red' onClick={this.handleDelete}>
+            Delete
             </Button>
         </div>
         </Card.Content>
@@ -35,5 +51,9 @@ constructor() {
   }
 }
 
-export default TodoContainer
+const mapDispatchToProps = {
+    deleteTodo
+}
+
+export default connect(null, mapDispatchToProps)(TodoContainer)
 
