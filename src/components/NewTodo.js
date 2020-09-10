@@ -1,7 +1,6 @@
 import React from 'react';
 import { addTodo } from '../actions/todos'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 class NewTodo extends React.Component {
     state = {
@@ -27,16 +26,17 @@ class NewTodo extends React.Component {
             body: JSON.stringify({
                 title: this.state.title,
                 content: this.state.content,
-                done: false
+                done: this.state.done,
+                user_id: 1
             }
             )}
         
         fetch(`http://localhost:3002/todos`, reqObj)
         .then(resp => resp.json())
-        .then(data => {console.log(data)
-            //this.props.addTodo(data)
-        }
-        )
+        .then(data => {
+            this.props.addTodo(data)
+            this.props.history.push('/todos')
+        })
     }
 
     render() {
@@ -50,12 +50,13 @@ class NewTodo extends React.Component {
                 <br />
                 <input name="content" placeholder="enter description" value={this.state.content} onChange={this.handleChange}>
                 </input>
-                <button type="submit"><Link to="/todos">add</Link></button>
+                <button type="submit">add</button>
               </form>
             </div>
           </div>  
         )}
 }
+
 
 
 const mapStateToProps = state => {

@@ -25,3 +25,10 @@ export const addTodo = todo => {
       todo
     }
 }
+
+export const editTodo = id => {
+  return {
+    type: "EDIT_TODO", 
+    id
+  }
+}

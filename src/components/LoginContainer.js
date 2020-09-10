@@ -1,21 +1,46 @@
 import React from 'react';
-//import { Link } from 'react-router-dom'
+import {loginSuccess } from '../actions/auth'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class LoginContainer extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      username: ''
+      username: 'kathleen',
+      password: 'brennan'
     }
   }
 
   handleChange = (e) => {
     this.setState({
-      username: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
 
+    const reqObj = {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    }
+
+    fetch('http://localhost:3002/api/v1/auth', reqObj)
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          this.setState({
+            error: data.error
+          })
+        } else {
+
+        }
+      });
+  }
 
   render() {
     console.log(this.props)
@@ -27,6 +52,7 @@ class LoginContainer extends React.Component {
 
        <form onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange} type='text' placeholder="username" value={this.state.username} />
+        <input onChange={this.handleChange} type="password" placeholder="password" value={this.state.password} />
         <input type='submit' />
        </form>
       </div>
@@ -34,7 +60,11 @@ class LoginContainer extends React.Component {
   }
 }
 
-export default LoginContainer;
+const mapDispatchToProps = {
+  loginSuccess
+}
+
+export default connect(null, mapDispatchToProps)(LoginContainer);
 
 
 

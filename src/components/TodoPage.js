@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { deleteTodo } from '../actions/todos'
 import { Link } from 'react-router-dom'
 import { Button, Card } from 'semantic-ui-react'
+import TodoContainer from './TodoContainer'
 
 class TodoPage extends React.Component {
     state = {
@@ -39,17 +40,14 @@ render(){
             </Card.Description>
         </Card.Content>
         <Card.Content extra>
-        <div className='ui four buttons'>
-            <Button basic color='black'>
+        <div className='ui three buttons'>
+            <Button basic color='green'>
             <Link to="/todos">Back</Link>
             </Button>
-            <Button basic color='green'>
-            Done
-            </Button>
             <Button basic color='yellow'>
-            Edit
+            <Link to={`/todos/edit/${this.props.id}`} >Edit</Link>
             </Button>
-            <Button basic color='red' onClick={(e) => this.props.deleteTodo(this.props.id)}>
+            <Button basic color='red' onClick={this.props.handleDelete}>
             Delete
             </Button>
         </div>
@@ -60,7 +58,7 @@ render(){
     }
 }
 const mapDispatchToProps = {
-    deleteTodo
+    deleteTodo,
   }
 
 export default connect(null, mapDispatchToProps)(TodoPage)

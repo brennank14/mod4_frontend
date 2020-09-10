@@ -2,13 +2,13 @@ import React from 'react';
 import TodoContainer from './TodoContainer';
 //import TodoPage from './TodoPage';
 import { connect }  from 'react-redux'
-import { loadTodos, deleteTodo, showTodo } from '../actions/todos'
+import { loadTodos } from '../actions/todos'
 import { Link } from 'react-router-dom'
 
 
 class TodosContainer extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       todos: [] 
     }; 
@@ -51,7 +51,7 @@ class TodosContainer extends React.Component {
                 <div className="ui items" >{this.renderTodos()}</div>
             </div>
         </div>
-    );
+    )
   }
 }
 
@@ -64,8 +64,6 @@ const mapStateToProps= (storeState) => {
 
 const mapDispatchToProps = {
   loadTodos,
-  deleteTodo,
-  showTodo
 }
 
 

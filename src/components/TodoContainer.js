@@ -5,9 +5,10 @@ import { Button, Card } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 
-
-
 class TodoContainer extends React.Component {
+    state = {
+        done: false
+    }
 
   handleDelete = () => {
     fetch(`http://localhost:3002/todos/${this.props.id}`, {
@@ -18,6 +19,8 @@ class TodoContainer extends React.Component {
       this.props.deleteTodo(this.props.id)
     })
   }
+
+  
 
 
   render(){
@@ -30,15 +33,12 @@ class TodoContainer extends React.Component {
             </Card.Description>
         </Card.Content>
         <Card.Content extra>
-        <div className='ui four buttons'>
-        <Button basic color='black'>
+        <div className='ui three buttons'>
+        <Button basic color='green'>
             <Link to={`/todos/${this.props.id}`} >View</Link>
             </Button>
-            <Button basic color='green'>
-            Done
-            </Button>
             <Button basic color='yellow'>
-            Edit
+            <Link to={`/todos/edit/${this.props.id}`} >Edit</Link>
             </Button>
             <Button basic color='red' onClick={this.handleDelete}>
             Delete
@@ -52,7 +52,7 @@ class TodoContainer extends React.Component {
 }
 
 const mapDispatchToProps = {
-    deleteTodo
+    deleteTodo,
 }
 
 export default connect(null, mapDispatchToProps)(TodoContainer)
