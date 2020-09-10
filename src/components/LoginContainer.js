@@ -8,7 +8,8 @@ class LoginContainer extends React.Component {
     super(props)
     this.state = {
       username: 'kathleen',
-      password: 'brennan'
+      password: 'brennan',
+      error: null
     }
   }
 
@@ -37,10 +38,14 @@ class LoginContainer extends React.Component {
             error: data.error
           })
         } else {
-
+          console.log(data)
+          this.props.loginSuccess(data.user)
+          this.props.history.push('/todos')
         }
       });
   }
+
+
 
   render() {
     console.log(this.props)
@@ -49,10 +54,14 @@ class LoginContainer extends React.Component {
         <h1>Welcome to Flatnote</h1>
         <h3>Please enter your username</h3>
 
-
+      {this.state.error ? <h6>this.state.error</h6> : null}
        <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} type='text' placeholder="username" value={this.state.username} />
-        <input onChange={this.handleChange} type="password" placeholder="password" value={this.state.password} />
+        <input onChange={this.handleChange} type='text' focus placeholder='Username' value={this.state.username} />
+        <br/>
+        <br/>
+        <input onChange={this.handleChange} type="password" focus placeholder='Password' value={this.state.password} />
+        <br/>
+        <br/>
         <input type='submit' />
        </form>
       </div>
@@ -67,29 +76,3 @@ const mapDispatchToProps = {
 export default connect(null, mapDispatchToProps)(LoginContainer);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   handleSubmit = (e) => {
-//     const { username } = this.state
-
-//     e.preventDefault()
-//     fetch(`http://localhost:3002/todos/${id}`)
-//     .then(resp => resp.json())
-//     .then(data => {
-
-//       this.props.history.push(`/dashboard/${id}`)
-//     })
-    
-//   }

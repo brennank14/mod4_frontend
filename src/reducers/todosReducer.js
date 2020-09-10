@@ -11,6 +11,8 @@ export default function todosReducer(state = [], action)
             return state.map(todo => 
                 todo.id === action.id ? action.todo : todo
             )
+        case "LOGIN_SUCCESS":
+            return [...action.user.todos]
         case 'DELETE_TODO':
             return state.filter(todo => todo.id !== action.id);
 

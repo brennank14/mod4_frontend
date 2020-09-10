@@ -6,11 +6,13 @@ import LoginContainer from './components/LoginContainer';
 import NewTodo from './components/NewTodo';
 import EditTodo from './components/EditTodo';
 import { Switch, Route } from 'react-router-dom'
+import Navbar from './components/Navbar';
 //import { loadTodos, deleteTodo, addTodo, showTodo } from './actions/todos';
 
 const App = () => {
   return (
     <div className="App">
+      <Navbar icon="check circle" title="What To Do Next?" description="Your Mobile To-Do List" />
     
       <Switch>
         <Route exact path='/todos' component={TodosContainer} />
