@@ -26,9 +26,9 @@ export const addTodo = todo => {
     }
 }
 
-export const editTodo = id => {
+export const editTodo = todo => {
   return {
     type: "EDIT_TODO", 
-    id
+    todo
   }
 }

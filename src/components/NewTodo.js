@@ -26,7 +26,6 @@ class NewTodo extends React.Component {
             body: JSON.stringify({
                 title: this.state.title,
                 content: this.state.content,
-                done: this.state.done,
                 user_id: 1
             }
             )}
@@ -34,7 +33,7 @@ class NewTodo extends React.Component {
         fetch(`http://localhost:3002/todos`, reqObj)
         .then(resp => resp.json())
         .then(data => {
-            this.props.addTodo(data)
+            this.props.addTodo(data.todo)
             this.props.history.push('/todos')
         })
     }
@@ -45,12 +44,19 @@ class NewTodo extends React.Component {
             <h1>Add a New To-Do Item</h1>
             <div className="header">
               <form onSubmit={this.handleSubmit}> 
+              <div class="ui focus input">
                 <input name="title" placeholder="enter to-do item" value={this.state.title} onChange={this.handleChange}>
                 </input>
+                </div>
                 <br />
+                <br />
+                <div class="ui focus input">
                 <input name="content" placeholder="enter description" value={this.state.content} onChange={this.handleChange}>
                 </input>
-                <button type="submit">add</button>
+                </div>
+                <br />
+                <br />
+                <button focus class="ui button" type="submit">add</button>
               </form>
             </div>
           </div>  

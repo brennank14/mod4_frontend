@@ -7,7 +7,7 @@ class EditTodo extends React.Component {
         title: this.props.title,
         content: this.props.content,
         done: this.props.done,
-        user_id: 1
+        user_id: this.props.user_id
         }
 
     handleChange = event => {
@@ -46,20 +46,20 @@ class EditTodo extends React.Component {
             <div className="todoListMain">
             <h1>Edit This To-Do Item</h1>
             <div className="header">
-              <form Submit={this.handleSubmit}> 
-              <div class="ui focus input"><input focus fluid name="title" defaultValue={this.title} value={this.state.title} onChange={this.handleChange}>
+              <form onSubmit={this.handleSubmit}> 
+              <div class="ui focus input"><input focus fluid type='text' name="title" value={this.state.title} onChange={this.handleChange}>
                 </input>
             </div>
                 <br/>
                 <br />
                 <div class="ui focus input">
-                <input focus fluid name="content" value={this.state.content} onChange={this.handleChange}>
+                <input focus fluid name="content" type='text' value={this.state.content} onChange={this.handleChange}>
                 </input>
                 </div>
 
                 <br/>
                  <br/>
-                 <button focus class="ui button">Edit</button>
+                 <button focus class="ui button">Save</button>
               </form>
             </div>
           </div>  

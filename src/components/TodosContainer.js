@@ -15,19 +15,24 @@ class TodosContainer extends React.Component {
   }
 
   componentDidMount(){
-    fetch('http://localhost:3002/todos', {
-        method: "GET",
-        headers: {
-          "access-control-allow-origin" : "*",
-          "Content-type": "application/json"
-        }})
-    .then(resp => resp.json())
-    .then(todos => {
-        
-      this.props.loadTodos(todos)
 
-    })
-  }
+    if (!this.props.auth){
+      this.props.history.push('/login')
+    }
+
+
+  //   fetch('http://localhost:3002/todos', {
+  //       method: "GET",
+  //       headers: {
+  //         "access-control-allow-origin" : "*",
+  //         "Content-type": "application/json"
+  //       }})
+  //   .then(resp => resp.json())
+  //   .then(todos => {
+  
+
+  //   })
+   }
 
 
   renderTodos = () => {
@@ -46,10 +51,12 @@ class TodosContainer extends React.Component {
   render() {
     return (
         <div>
-            <div>
-                <h3>To-Do List</h3>
+          <div>
+            <div id='listHeading'>
+                <h2>To-Do List</h2>
                 <button><Link to="/todos/new">New To-Do</Link></button>
-                <div className="ui items" >{this.renderTodos()}</div>
+              </div>
+              <div className="ui items" >{this.renderTodos()}</div>
             </div>
         </div>
     )
@@ -58,8 +65,10 @@ class TodosContainer extends React.Component {
 
 
 const mapStateToProps= (storeState) => {
+  console.log("hi", storeState)
   return {
     todos: storeState.todos,
+    auth: storeState.auth
   }
 }
 

@@ -20,8 +20,9 @@ componentDidMount(){
             }})
     
         .then(resp => resp.json())
-        .then(todo => {
-           this.setState({todo: todo})
+        .then(data => {
+            console.log(data.todo)
+           this.setState({todo: data.todo})
     
         })
       
@@ -47,8 +48,7 @@ render(){
             <Button focus class="ui button" primary>
             <Link to={`/todos/edit/${this.props.id}`} >Edit</Link>
             </Button>
-            <Button focus class="ui button" secondary onClick={this.props.handleDelete}>
-            Delete
+            <Button focus class="ui button" secondary >
             </Button>
         </div>
         </Card.Content>

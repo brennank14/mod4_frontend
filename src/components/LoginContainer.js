@@ -2,6 +2,7 @@ import React from 'react';
 import {loginSuccess } from '../actions/auth'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { loadTodos } from '../actions/todos'
 
 class LoginContainer extends React.Component {
   constructor(props){
@@ -56,12 +57,12 @@ class LoginContainer extends React.Component {
       {this.state.error ? <h6>this.state.error</h6> : null}
        <form onSubmit={this.handleSubmit}>
        <div class="ui focus input">
-       <input focus fluid onChange={this.handleChange} type='text' placeholder='Username' value={this.state.username} />
+       <input focus onChange={this.handleChange} type='text' name='username' placeholder='Username' value={this.state.username} />
        </div>
         <br/>
         <br/>
         <div class="ui focus input">
-          <input focus fluid onChange={this.handleChange} type="password" laceholder='Password' value={this.state.password} />
+          <input focus onChange={this.handleChange} type="password" name="password" placeholder='Password' value={this.state.password} />
         </div>
         <br/>
         <br/>
@@ -73,7 +74,8 @@ class LoginContainer extends React.Component {
 }
 
 const mapDispatchToProps = {
-  loginSuccess
+  loginSuccess,
+  loadTodos
 }
 
 export default connect(null, mapDispatchToProps)(LoginContainer);

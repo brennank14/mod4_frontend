@@ -8,9 +8,13 @@ export default function todosReducer(state = [], action)
         case "ADD_TODO":
             return [...state, action.todo];
         case "EDIT_TODO":
-            return state.map(todo => 
-                todo.id === action.id ? action.todo : todo
-            )
+            return state.map(todo => {
+                if (todo.id === action.todo.id) {
+                    return action.todo
+                } else {
+                    return todo
+                }
+                })
         case "LOGIN_SUCCESS":
             return [...action.user.todos]
         case 'DELETE_TODO':
