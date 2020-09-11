@@ -31,7 +31,7 @@ render(){
     if (!this.state.todo){
         return <h4>loading...</h4>
     }
-    return <div>
+    return <div id={'card'}>
         <Card>
         <Card.Content>
         <Card.Header>{this.state.todo.title}</Card.Header>
@@ -41,13 +41,13 @@ render(){
         </Card.Content>
         <Card.Content extra>
         <div className='ui three buttons'>
-            <Button basic color='green'>
+            <Button focus class="ui button">
             <Link to="/todos">Back</Link>
             </Button>
-            <Button basic color='yellow'>
+            <Button focus class="ui button" primary>
             <Link to={`/todos/edit/${this.props.id}`} >Edit</Link>
             </Button>
-            <Button basic color='red' onClick={this.props.handleDelete}>
+            <Button focus class="ui button" secondary onClick={this.props.handleDelete}>
             Delete
             </Button>
         </div>

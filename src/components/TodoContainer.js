@@ -24,8 +24,8 @@ class TodoContainer extends React.Component {
 
 
   render(){
-    return <div>
-        <Card>
+    return <div id={"card"}>
+        <Card >
         <Card.Content>
         <Card.Header>{this.props.title}</Card.Header>
             <Card.Description>
@@ -34,13 +34,13 @@ class TodoContainer extends React.Component {
         </Card.Content>
         <Card.Content extra>
         <div className='ui three buttons'>
-        <Button basic color='green'>
+        <Button focus class="ui button">
             <Link to={`/todos/${this.props.id}`} >View</Link>
             </Button>
-            <Button basic color='yellow'>
+            <Button focus primary class="ui button">
             <Link to={`/todos/edit/${this.props.id}`} >Edit</Link>
             </Button>
-            <Button basic color='red' onClick={this.handleDelete}>
+            <Button focus secondary class="ui button" onClick={this.handleDelete}>
             Delete
             </Button>
         </div>

@@ -48,7 +48,6 @@ class LoginContainer extends React.Component {
 
 
   render() {
-    console.log(this.props)
     return (
       <div className={`app`}>
         <h1>Welcome to Flatnote</h1>
@@ -56,13 +55,17 @@ class LoginContainer extends React.Component {
 
       {this.state.error ? <h6>this.state.error</h6> : null}
        <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} type='text' focus placeholder='Username' value={this.state.username} />
+       <div class="ui focus input">
+       <input focus fluid onChange={this.handleChange} type='text' placeholder='Username' value={this.state.username} />
+       </div>
         <br/>
         <br/>
-        <input onChange={this.handleChange} type="password" focus placeholder='Password' value={this.state.password} />
+        <div class="ui focus input">
+          <input focus fluid onChange={this.handleChange} type="password" laceholder='Password' value={this.state.password} />
+        </div>
         <br/>
         <br/>
-        <input type='submit' />
+        <input focus class="ui button" type='submit' />
        </form>
       </div>
     );

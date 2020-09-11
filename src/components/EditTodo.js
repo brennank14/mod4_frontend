@@ -46,13 +46,20 @@ class EditTodo extends React.Component {
             <div className="todoListMain">
             <h1>Edit This To-Do Item</h1>
             <div className="header">
-              <form onSubmit={this.handleSubmit}> 
-                <input name="title" defaultValue={this.title} value={this.state.title} onChange={this.handleChange}>
+              <form Submit={this.handleSubmit}> 
+              <div class="ui focus input"><input focus fluid name="title" defaultValue={this.title} value={this.state.title} onChange={this.handleChange}>
                 </input>
+            </div>
+                <br/>
                 <br />
-                <input name="content" value={this.state.content} onChange={this.handleChange}>
+                <div class="ui focus input">
+                <input focus fluid name="content" value={this.state.content} onChange={this.handleChange}>
                 </input>
-                <button type="submit">edit</button>
+                </div>
+
+                <br/>
+                 <br/>
+                 <button focus class="ui button">Edit</button>
               </form>
             </div>
           </div>  

@@ -1,6 +1,6 @@
 import React from 'react';
 import TodoContainer from './TodoContainer';
-//import TodoPage from './TodoPage';
+import TodoPage from './TodoPage';
 import { connect }  from 'react-redux'
 import { loadTodos } from '../actions/todos'
 import { Link } from 'react-router-dom'
@@ -31,6 +31,7 @@ class TodosContainer extends React.Component {
 
 
   renderTodos = () => {
+    console.log(this.props)
     return this.props.todos.map(t => (
       <TodoContainer 
         key={t.id}
