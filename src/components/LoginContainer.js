@@ -8,8 +8,8 @@ class LoginContainer extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      username: 'kathleen',
-      password: 'brennan',
+      username: '',
+      password: '',
       error: null
     }
   }
@@ -54,7 +54,7 @@ class LoginContainer extends React.Component {
         <h1>Welcome to Flatnote</h1>
         <h3>Please enter your username</h3>
 
-      {this.state.error ? <h6>this.state.error</h6> : null}
+      {this.state.error ? <h3 style={{color: 'red'}}>Incorrect Username or Password</h3> : null}
        <form onSubmit={this.handleSubmit}>
        <div class="ui focus input">
        <input focus onChange={this.handleChange} type='text' name='username' placeholder='Username' value={this.state.username} />
